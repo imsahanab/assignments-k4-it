@@ -1,4 +1,4 @@
-# Day 1 - Node.js Basics
+# Day 2 - Node.js Basics
 
  Topics Learned
  1. Streams
@@ -78,4 +78,37 @@ Lexical Scope
 Promises
 Error Handling
 
-Day1 Goal: Learned how Node.js handles files, asynchronous tasks, scopes, promises, and errors. 🚀
+Day1 Goal: Learned how Node.js handles files, asynchronous tasks, scopes, promises, and errors. 
+# Day 2 - Node.js Concepts
+
+## Topics Learned
+
+### Worker Threads
+
+* Used Worker Threads to run heavy tasks in a separate thread.
+* Prevents the main thread from getting blocked.
+
+### Memory Leaks
+
+* Learned that memory leaks happen when memory is used but never released.
+* Can increase memory usage and slow down applications.
+
+ OOP Concepts
+
+ Encapsulation
+
+* Hides data and allows access through methods.
+
+ Inheritance
+
+ Child classes can use properties and methods of parent classes.
+
+ Polymorphism
+
+ Same method can behave differently in different classes.
+
+ Abstraction
+
+ Hides complex implementation details and shows only necessary functionality.
+
+
