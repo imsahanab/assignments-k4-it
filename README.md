@@ -70,16 +70,12 @@ try {
   console.log(err);
 }
 //
-topics covered
+topics covered:
 
-✔ Streams
-
-✔ Event Loop
-
-✔ Lexical Scope
-
-✔ Promises
-
-✔ Error Handling
+Streams
+Event Loop
+Lexical Scope
+Promises
+Error Handling
 
 Day1 Goal: Learned how Node.js handles files, asynchronous tasks, scopes, promises, and errors. 🚀
