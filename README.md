@@ -1,4 +1,4 @@
-# Day 2 - Node.js Basics
+Day 2 - Node.js Basics
 
  Topics Learned
  1. Streams
