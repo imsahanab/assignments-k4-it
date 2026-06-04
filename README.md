@@ -22,6 +22,8 @@ console.log("Start");
 fs.readFile("file.txt", "utf8", () => {
   console.log("File Read");
 });
+day 4: done the task given and practiced basic typescript 
+
 
 console.log("End");
 
