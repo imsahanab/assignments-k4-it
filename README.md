@@ -114,3 +114,7 @@ Day1 Goal: Learned how Node.js handles files, asynchronous tasks, scopes, promis
  Hides complex implementation details and shows only necessary functionality.
 
 
+ day 5: implemented inventory management crud operations
+ 
+
+
