@@ -1,0 +1,30 @@
+these topics of express js i saw vedio tomorow i need to practice deeply through the project assigned for me.
+
+Basics + Routing
+Middleware
+REST APIs
+Express Router
+Error handling
+DB integration
+JWT auth and then i learnt git and then i saw  expressjs with ts and also learnt topics inside express and got task and tried the steps
+..Express + TypeScript setup
+ Server running on port 3000
+ Folder structure created
+ Created auth.controller.ts
+ Created auth.routes.ts
+ Connected routes in app.ts
+ Tested POST /auth/register in Postman  
+
+
+
+What I completed:
+Initialized project with CommonJS configuration
+Set up backend project structure
+Created and organized src folder (clarified placement outside vs inside project)
+Successfully ran the server on port 3000
+Tested APIs using Postman
+Understood request flow using controllers
+Created/login API flow and verified output in terminal
+→ Example: email login success message printed in terminal
+API Testing:
+Installed and used Postman

@@ -1,0 +1,16 @@
+User enters email & password
+        ↓
+Click Login
+        ↓
+app.js sends data using fetch()
+        ↓
+server.js receives data in req.body
+        ↓
+Credentials match
+        ↓
+loginEmitter.emit("login", { email })
+        ↓
+loginEmitter.on("login", ...)
+        ↓
+Terminal prints:
+sahana@gmail.com logged in successfully
