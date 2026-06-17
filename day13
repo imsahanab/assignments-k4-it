@@ -1,0 +1,37 @@
+const couchbase = require("couchbase");
+
+async function main() {
+  const cluster = await couchbase.connect(
+    "couchbases://.cloud.couchbase.com",
+    {
+      username: "hhg",
+      password: "jhjhu"
+    }
+  );
+
+  await cluster.waitUntilReady(10000);
+
+  const bucket = cluster.bucket("mybuck");
+  const collection = bucket.defaultCollection();
+
+  for (let batch = 1; batch <= 5000; batch += 100) {
+    const promises = [];
+
+    for (let i = batch; i < batch + 100 && i <= 5000; i++) {
+      promises.push(
+        collection.upsert(`user_${i}`, {
+          id: i,
+          name: `User ${i}`,
+          city: i % 2 === 0 ? "Chennai" : "Bangalore"
+        })
+      );
+    }
+
+    await Promise.all(promises);
+    console.log(`Inserted up to ${Math.min(batch + 99, 5000)}`);
+  }
+
+  console.log("Inserted 5000 records");
+}
+
+main().catch(console.error);
