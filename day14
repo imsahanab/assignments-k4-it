@@ -1,0 +1,188 @@
+
+NESTJS - OVERVIEW OF CONCEPTS PRACTICED
+
+
+1. FIRST STEPS
+--------------
+- Installed NestJS using Nest CLI
+- Created project using nest new
+- Understood project folder structure
+- Learned main.ts as application entry point
+- Understood AppModule bootstrapping process
+
+2. CONTROLLERS
+--------------
+- Handles incoming HTTP requests
+- Defined routes using decorators
+  @Get()
+  @Post()
+  @Put()
+  @Delete()
+- Used @Param(), @Query(), @Body()
+- Returns response to client
+
+Example:
+GET /users
+POST /users
+
+3. PROVIDERS (SERVICES)
+-----------------------
+- Contains business logic
+- Created using @Injectable()
+- Used Dependency Injection
+- Reusable across application
+
+Example:
+UserController -> UserService
+
+4. MODULES
+----------
+- Organizes application into features
+- Groups controllers and providers
+- Used @Module() decorator
+
+Example:
+UserModule
+ProductModule
+AuthModule
+
+5. MIDDLEWARE
+-------------
+- Executes before controller
+- Used for logging
+- Used for request processing
+- Learned importance of next()
+
+Flow:
+Request -> Middleware -> Controller
+
+6. EXCEPTION FILTERS
+--------------------
+- Handles application errors
+- Centralized error handling
+- Used built-in HTTP exceptions
+
+Example:
+throw new NotFoundException()
+
+7. PIPES
+--------
+- Validation and transformation
+- Used ValidationPipe
+- Used ParseIntPipe
+- Implemented DTO validation
+
+Example:
+@Param('id', ParseIntPipe)
+
+8. GUARDS
+---------
+- Used for authorization
+- Determines whether request can proceed
+- Implemented CanActivate interface
+
+Flow:
+Request -> Guard -> Controller
+
+Example:
+JWT Authentication Guard
+
+9. INTERCEPTORS
+---------------
+- Executes before and after request
+- Used for logging
+- Response transformation
+- Performance monitoring
+
+Flow:
+Before Request
+Controller
+After Response
+
+10. CUSTOM DECORATORS
+---------------------
+- Created reusable decorators
+- Used createParamDecorator()
+
+Example:
+@User()
+
+CORE CONCEPTS LEARNED
+=====================
+
+1. DEPENDENCY INJECTION (DI)
+----------------------------
+- Injected services into controllers
+- Reduced tight coupling
+- Improved maintainability
+
+Example:
+constructor(
+ private readonly userService: UserService
+) {}
+
+2. INVERSION OF CONTROL (IoC)
+-----------------------------
+- NestJS framework creates and manages objects
+- Framework controls dependency creation
+
+3. DTO (DATA TRANSFER OBJECT)
+-----------------------------
+- Used for request validation
+- Defined request structure
+- Combined with ValidationPipe
+
+Example:
+CreateUserDto
+
+4. TYPESCRIPT DECORATORS
+------------------------
+@Controller()
+@Module()
+@Injectable()
+@Get()
+@Post()
+@Body()
+@Param()
+
+REQUEST LIFECYCLE
+=================
+
+Client Request
+      |
+Middleware
+      |
+Guard
+      |
+Interceptor (Before)
+      |
+Pipe
+      |
+Controller
+      |
+Service
+      |
+Database
+      |
+Response
+      |
+Interceptor (After)
+      |
+Client
+
+Error -> Exception Filter
+concepts covered:
+- Controllers
+- Providers (Services)
+- Modules
+- Middleware
+- Exception Filters
+- Pipes
+- Guards
+- Interceptors
+- Custom Decorators
+- Dependency Injection
+- Inversion of Control
+- DTO Validation
+- TypeScript Decorators
+- Request Lifecycle
