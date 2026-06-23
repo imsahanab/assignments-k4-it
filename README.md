@@ -1,239 +1,69 @@
-# Employee Management System (EMS)
-## JWT Authentication + Role-Based Authorization
+# K4 IT Learning Journey
 
----
+## Day 1
 
-## Project Structure
+Learned Node.js Streams, Event Loop, Lexical Scope, Promises, and Error Handling using Callbacks, Promises, and Async/Await. Practiced file handling, stream chunk processing, and asynchronous execution flow.
 
-```
-employee-management/
-├── src/
-│   ├── config/
-│   │   └── db.ts                    # MongoDB connection
-│   ├── controllers/
-│   │   ├── auth.controller.ts       # register, login, getMe
-│   │   ├── employee.controller.ts   # CRUD operations
-│   │   └── upload.controller.ts     # CSV import / export
-│   ├── middleware/
-│   │   ├── auth.middleware.ts       # JWT verification (authenticate)
-│   │   ├── role.middleware.ts       # Role-based guard (authorize)
-│   │   └── upload.middleware.ts     # Multer CSV file handler
-│   ├── models/
-│   │   ├── user.model.ts            # User schema (with bcrypt)
-│   │   └── employee.model.ts        # Employee schema
-│   ├── routes/
-│   │   ├── auth.routes.ts           # /auth/*
-│   │   ├── employee.routes.ts       # /employees/*
-│   │   └── upload.routes.ts         # /upload/*
-│   ├── utils/
-│   │   └── jwt.util.ts              # signToken / verifyToken
-│   ├── workers/
-│   │   └── csv.worker.js            # Worker thread for CSV parsing
-│   ├── app.ts                       # Express app setup
-│   └── server.ts                    # Entry point
-├── employees.csv                    # Sample CSV data
-├── .env.example                     # Environment variable template
-├── package.json
-└── tsconfig.json
-```
+## Day 2
 
----
+Learned Worker Threads for handling CPU-intensive tasks, Memory Leak concepts and prevention techniques, and Object-Oriented Programming principles including Encapsulation, Inheritance, Polymorphism, and Abstraction.
 
-## Authentication & Authorization Flow
+## Day 3
 
-```
-Request
-   │
-   ▼
-┌──────────────────────────────────┐
-│  authenticate middleware          │
-│  • Reads Authorization header     │
-│  • Extracts Bearer token          │
-│  • jwt.verify(token, JWT_SECRET)  │
-│  • Attaches decoded payload       │
-│    { userId, email, role }        │
-│    to req.user                    │
-└──────────────────┬───────────────┘
-                   │  ✅ valid token
-                   ▼
-┌──────────────────────────────────┐
-│  authorize(...roles) middleware   │
-│  • Checks req.user.role           │
-│  • Compares against allowed roles │
-│  • 403 if not permitted           │
-└──────────────────┬───────────────┘
-                   │  ✅ role allowed
-                   ▼
-             Controller
-```
+Worked on project implementation and gained hands-on experience in applying JavaScript and backend concepts in a practical environment.
 
----
+## Day 4
 
-## Role Permissions
+Learned TypeScript fundamentals including Type Aliases, Interfaces, Enums, Classes, and Generics to build type-safe applications.
 
-| Operation            | Admin | Manager | Employee       |
-|----------------------|:-----:|:-------:|:--------------:|
-| Register / Login     | ✅    | ✅      | ✅             |
-| View own profile     | ✅    | ✅      | ✅             |
-| View all employees   | ✅    | ✅      | ❌ (own only)  |
-| Create employee      | ✅    | ✅      | ❌             |
-| Update employee      | ✅    | ✅      | ❌             |
-| Delete employee      | ✅    | ❌      | ❌             |
-| Import CSV           | ✅    | ✅      | ❌             |
-| Export CSV           | ✅    | ✅      | ❌             |
+## Day 5
 
----
+Developed an Inventory Management System using TypeScript with CRUD operations, Enums, Interfaces, Classes, Error Handling, and Activity Logging.
 
-## Setup
+## Day 6
 
-### 1. Install dependencies
-```bash
-npm install
-```
+Learned advanced TypeScript concepts such as Generics, Union Types, Intersection Types, keyof, typeof, and Type Guards. Also explored NestJS basics including Controllers, Services, Modules, and CRUD architecture.
 
-### 2. Configure environment
-```bash
-cp .env.example .env
-# Edit .env with your MongoDB URI and a strong JWT_SECRET
-```
+## Day 7
 
-### 3. Start development server
-```bash
-npm run dev
-```
+Explored Express.js concepts including Routing, Middleware, REST APIs, Express Router, Error Handling, Database Integration, JWT Authentication, and Git. Set up an Express + TypeScript project and tested APIs using Postman.
 
----
+## Day 8
 
-## API Reference
+Worked on backend project implementation and continued practicing Express.js concepts through assigned project tasks.
 
-### Auth
+## Day 9
 
-#### Register
-```
-POST /auth/register
-Content-Type: application/json
+Developed a CRUD application with Role-Based Access Control (RBAC) using JWT Authentication and implemented a CSV Upload project for data processing and storage.
 
-{
-  "name": "Alice",
-  "email": "alice@company.com",
-  "password": "secret123",
-  "role": "Admin"          ← "Admin" | "Manager" | "Employee"
-}
-```
+## Day 10
 
-#### Login
-```
-POST /auth/login
-Content-Type: application/json
+Learned Couchbase database connectivity using Node.js and performed CRUD operations including document insertion, retrieval, updating, and querying.
 
-{
-  "email": "alice@company.com",
-  "password": "secret123"
-}
-```
-**Response includes a JWT token** — use it in subsequent requests:
-```
-Authorization: Bearer <token>
-```
+## Day 11
 
-#### Get current user
-```
-GET /auth/me
-Authorization: Bearer <token>
-```
+Implemented Couchbase database connection setup using TypeScript and learned how to structure reusable database connectivity modules.
 
----
+## Day 12
 
-### Employees (all require Authorization header)
+Learned Couchbase basics including Buckets, Scopes, Collections, Documents, CRUD Operations, N1QL Queries, and Couchbase architecture. Also explored NestJS fundamentals and important backend concepts relevant to POS systems.
 
-#### List employees
-```
-GET /employees?page=1&limit=10
-Authorization: Bearer <token>
-```
-- Admin/Manager → full paginated list
-- Employee → only their own record (matched by email)
+## Day 13
 
-#### Get one employee
-```
-GET /employees/:id
-Authorization: Bearer <token>
-```
+Worked on bulk data loading in Couchbase by inserting large datasets efficiently using batch processing and asynchronous operations.
 
-#### Create employee
-```
-POST /employees
-Authorization: Bearer <token>   ← Admin or Manager only
-Content-Type: application/json
+## Day 14
 
-{
-  "name": "Ravi",
-  "role": "Developer",
-  "department": "Engineering",
-  "salary": 60000,
-  "email": "ravi@company.com"
-}
-```
+Practiced core NestJS concepts including Controllers, Services, Modules, Middleware, Guards, Pipes, Interceptors, Exception Filters, DTO Validation, Dependency Injection, and Request Lifecycle.
 
-#### Update employee
-```
-PUT /employees/:id
-Authorization: Bearer <token>   ← Admin or Manager only
-Content-Type: application/json
+## Day 15
 
-{ "salary": 65000 }
-```
+Continued learning and practicing NestJS concepts, strengthening understanding of project structure, dependency injection, request flow, and backend development using TypeScript.
 
-#### Delete employee
-```
-DELETE /employees/:id
-Authorization: Bearer <token>   ← Admin only
-```
+## Day 16
 
----
+Worked with NestJS, Express.js, and Couchbase. Performed bulk insertion of 10,000 records into Couchbase and monitored RTT (Round Trip Time) to analyze database performance.
 
-### CSV Operations (Admin or Manager only)
+## Day 17
 
-#### Import employees from CSV
-```
-POST /upload/csv
-Authorization: Bearer <token>
-Content-Type: multipart/form-data
-
-file: employees.csv
-```
-Expected CSV format:
-```csv
-name,role,department,salary,email
-Sahana,Developer,Engineering,50000,sahana@company.com
-```
-
-#### Export employees as CSV
-```
-GET /upload/export
-Authorization: Bearer <token>
-```
-Returns a downloadable `employees_<timestamp>.csv` file.
-
----
-
-## CSV Import Flow
-
-```
-Client uploads file
-       │
-       ▼
-  Multer middleware
-  (validates CSV, saves to /uploads/)
-       │
-       ▼
-  Worker Thread (csv.worker.js)
-  (parses CSV rows off the main thread)
-       │
-       ▼
-  Employee.insertMany(rows)
-  (bulk insert with createdBy = req.user.userId)
-       │
-       ▼
-  Response: { count, data }
-```
+Revised JavaScript fundamentals under senior guidance and practiced array programming, array methods, and core JavaScript concepts to strengthen problem-solving skills.
