@@ -1,0 +1,19 @@
+import couchbase from "couchbase";
+
+async function connectDB() {
+  const cluster = await couchbase.connect(
+    "couchbases://cb.jjj",
+    {
+      username:"nnjj",
+      password: "ppp#"
+    }
+  );
+
+  console.log("Connected to Couchbase");
+
+  const bucket = cluster.bucket("travel-sample");
+
+  return { cluster, bucket };
+}
+
+export default connectDB;
