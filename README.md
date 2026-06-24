@@ -67,3 +67,16 @@ Worked with NestJS, Express.js, and Couchbase. Performed bulk insertion of 10,00
 ## Day 17
 
 Revised JavaScript fundamentals under senior guidance and practiced array programming, array methods, and core JavaScript concepts to strengthen problem-solving skills.
+## Day 18
+# Day 18 - NestJS Authentication
+
+* Implemented JWT Authentication in NestJS
+* Created Login API using JWT Token
+* Added Auth Guard and JWT Strategy
+* Implemented bcrypt password hashing and comparison
+* Connected NestJS with Couchbase Capella
+* Queried users from Couchbase using N1QL
+* Created Register API using upsert()
+* Stored hashed passwords in Couchbase
+* Created Protected Profile API using Bearer Token
+* Tested APIs using Thunder Client
