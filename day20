@@ -1,0 +1,155 @@
+# Day 18 - NestJS Auth Module
+
+## Controller
+
+@Post('forgot-password')
+forgotPassword(
+  @Body() forgotPasswordDto: ForgotPasswordDto,
+) {
+  return this.authService.forgotPassword(
+    forgotPasswordDto,
+  );
+}
+
+* Receives POST request from client.
+* Extracts request body using `@Body()`.
+* Passes data to service layer.
+* Returns service response.
+
+  ## Service
+
+
+async forgotPassword(
+  forgotPasswordDto: ForgotPasswordDto,
+) {
+  const { email } = forgotPasswordDto;
+
+  // business logic
+
+  return {
+    message: 'Reset link sent',
+  };
+}
+
+
+* Contains actual business logic.
+* Gets data from controller.
+* Validates/processes request.
+* Interacts with database if needed.
+* Returns response.
+
+
+
+## Registration Flow
+
+
+const hashedPassword = await bcrypt.hash(
+  body.password,
+  10,
+);
+
+const user = {
+  id: `user::${body.email}`,
+  email: body.email,
+  userPassword: hashedPassword,
+};
+
+await collection.upsert(
+  `user::${body.email}`,
+  user,
+);
+```
+
+* Hash password before storing.
+* Create user object.
+* Store document in Couchbase.
+
+---
+
+## Login Flow
+
+
+const user = await getUser(email);
+
+const isMatch = await bcrypt.compare(
+  password,
+  user.userPassword,
+);
+
+if (!isMatch) {
+  throw new UnauthorizedException();
+}
+
+
+* Fetch user.
+* Compare entered password with hashed password.
+* Throw exception if password is invalid.
+
+---
+
+## JWT Generation
+
+
+const payload = {
+  email: user.email,
+};
+
+const token =
+  this.jwtService.sign(payload);
+
+return {
+  access_token: token,
+};
+
+
+* Create payload.
+* Generate JWT token.
+* Return token to client.
+
+
+
+## Auth Guard
+
+
+@UseGuards(AuthGuard('jwt'))
+@Get('profile')
+getProfile() {
+  return 'Protected Route';
+}
+```
+
+* Intercepts request.
+* Validates JWT token.
+* Allows access only for authenticated users.
+
+---
+
+## Couchbase
+
+
+await collection.upsert(
+  `user::${body.email}`,
+  user,
+);
+
+
+* Insert new document.
+* Update existing document if key already exists.
+
+
+
+## Request Flow
+
+
+Client
+ ↓
+Controller
+ ↓
+DTO
+ ↓
+Service
+ ↓
+Database
+ ↓
+Response
+
