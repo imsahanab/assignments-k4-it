@@ -1,6 +1,6 @@
 # Day 18 - NestJS Auth Module
 
-## Controller
+## Controller contrroller --> it will get the request and then route to the service which has actual business logic.
 
 @Post('forgot-password')
 forgotPassword(
