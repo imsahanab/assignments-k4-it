@@ -1,0 +1,16 @@
+ WebSocket is a protocol.
+It is used for real-time communication.
+It allows the client and server to talk to each other anytime.
+
+Eg: WhatsApp
+Instagram chat
+Live cricket score
+Food delivery tracking
+
+
+in http Client → Request
+Server → Response
+Connection Closed
+
+websockets ar etwo waay connection connection stays open until user exits the browser or application it waits for message ..it wont ask is there any new messages each time wesockets wait until the browser or applicaton is active
+its real time but http is not real time
